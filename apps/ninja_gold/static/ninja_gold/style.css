@@ -1,0 +1,22 @@
+.green {
+    color: green;
+  }
+.red {
+    color: red;
+  }
+
+.gold{
+    width: 100px;
+    border: 1px solid black;
+    text-align: center
+}
+.activities{
+    width: 500px;
+}
+.activity{
+    width: 400px;
+    height: 20px;
+}
+.container{
+    margin: 20px;
+}

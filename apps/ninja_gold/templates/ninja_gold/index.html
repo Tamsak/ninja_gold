@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'ninja_gold/style.css' %}">
+  <title>Ninja Gold</title>
+</head>
+<body>
+<div class="container">
+    <h1>Ninja Gold</h1>
+  <p>Your Gold:</p> <p class="gold">{{request.session.counter}}</p>
+
+  <div class='row'>
+        <div class='col-md-3'>
+            <h3>Farm</h3>
+            <p>earns 10-20 gold</p>
+            <form action="{% url 'process_money' %}" method='POST'>
+            {% csrf_token %}
+                <div class='form-group'>
+                    <input type="hidden" name="location" value="farm">
+                    <input type='submit' name='submit' value="Find Gold"/>
+                </div>
+            </form>
+        </div>
+        <div class='col-md-3'>
+            <h3>Cave</h3>
+            <p>earns 5-10 gold</p>
+            <form action="{% url 'process_money' %}" method='POST'>
+            {% csrf_token %}
+                <div class='form-group'>
+                    <input type ="hidden" name="location" value="cave">
+                    <input type='submit' name='submit' value="Find Gold"/>
+                </div>
+            </form>
+        </div>
+        <div class='col-md-3'>
+            <h3>House</h3>
+            <p>earns 2-5 gold</p>
+            <form action="{% url 'process_money' %}" method='POST'>
+            {% csrf_token %}
+                <div class='form-group'>
+                    <input type ="hidden" name="location" value="house" >
+                    <input type='submit' name='submit' value="Find Gold"/>
+                </div>
+            </form>
+        </div>
+        <div class='col-md-3'>
+            <h3>Casino</h3>
+            <p>earns/loses 0-50 gold</p>
+            <form action="{% url 'process_money' %}" method='POST'>
+            {% csrf_token %}
+                <div class='form-group'>
+                    <input type ="hidden" name="location" value ="casino">
+                    <input type='submit' name='submit' value="Find Gold"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <div class='activities'>
+        <h3>Activities:</h3>
+        {% for activity in request.session.activity %}
+            <div class='activity'></div>
+                {{activity}}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
